@@ -1,0 +1,63 @@
+/*
+Christmas Polka Dots
+By Chrys Wu, December 2010
+info[at]chryswu[dot]com
+Licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
+http://creativecommons.org/licenses/by-nc-sa/3.0/
+//*/
+ 
+void setup () {
+  size(960,600);
+  background(255);
+  noStroke();
+  smooth();
+}
+ 
+void draw() {
+ 
+}
+ 
+/* 
+Durstenfeld's version of the Fisher-Yates shuffle: http://en.wikipedia.org/wiki/Fisher–Yates_shuffle#The_modern_algorithm
+Code adapted from http://forum.processing.org/topic/pixels-array-help
+//*/
+ 
+void shuffle(int[] a) {
+  for (int i=a.length; i > 1; i--) {
+    int randomNumber = int(random(i));
+    int j = a[randomNumber];
+    a[randomNumber] = a[i-1];
+    a[i-1] = j;
+  }
+}
+ 
+void mousePressed() {
+ 
+  float rad_1 = random(40,75);
+  float rad_2 = random(40,75);
+  float rad_3 = random(40,75);  
+  
+  color pearl = color(139,26,26,235);
+  color crimson = color(238,238,224,235);
+  color evergreen = color(0,102,0,235);
+  int[] colors = { pearl, crimson, evergreen };
+  shuffle(colors);  
+      
+  fill(colors[0]);
+  ellipse((mouseX - 30), (mouseY - 30), rad_1, rad_1);
+  fill(colors[1]);
+  ellipse((mouseX + 10), (mouseY - 35), rad_2, rad_2);
+  fill(colors[2]);
+  ellipse(mouseX, mouseY, rad_3, rad_3);
+}
+ 
+//* Save the work as a .png using the 's' key
+void keyPressed() {
+  if (key == 'w') {
+    background(255);
+    } else {
+  if (key == 'b') {
+    background(0);
+    }
+    }
+}
